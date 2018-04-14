@@ -26,7 +26,10 @@
 
 {#控制代码块#}
 {% for my in my_list %}
-    {{ my }}<br>
+    {% if my > 3 %}
+          {{ my }}<br>
+    {% endif %}
+
 {% endfor %}
 
 
