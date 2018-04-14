@@ -1,6 +1,7 @@
 # coding=utf8
 from flask import Flask,render_template
 
+# 处理中文编码问题
 import sys
 
 reload(sys)
