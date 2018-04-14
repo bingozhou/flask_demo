@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+这个是WEB页面测试<br>
+你好，比尔<br>
+{#字符串变量#}
+这个是URL：{{ url_str }}<br>
+
+{#列表变量#}
+这个是list: {{ my_list }} <br>
+这个是my_list.1: {{ my_list.1 }} <br>
+这个是my_list[2]: {{ my_list[2] }} <br>
+
+{#字典变量#}
+这个是dict:  {{ my_dict }}<br>
+这个是my_dict.name:  {{ my_dict.name }}<br>
+这个是my_dict.age:  {{ my_dict.age }}<br>
+这个是my_dict.age:  {{ my_dict['age'] }}<br>
+
+{#整型变量#}
+这个是my_int:  {{ my_int }}<br>
+
+{#控制代码块#}
+{% for my in my_list %}
+    {{ my }}<br>
+{% endfor %}
+
+
+</body>
+</html>
