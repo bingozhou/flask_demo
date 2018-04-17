@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 reload(sys)
-sys.setdefaultencoding('utf-8')
+sys.setdefaultencoding('utf8')
 
 from flask import send_from_directory, \
     Flask,url_for,request,render_template
@@ -57,7 +57,8 @@ def file_list():
     file_name = os.listdir(r'E:\project\flask_demo\filedown_up\media')
     record = []
     for name in file_name:
-        name = name.encode('gb2312')
+        print name
+        name = name.encode('utf8', 'ignore')
         path = os.path.join("E:\project\\flask_demo\\filedown_up\\media",name)
         # print path
         # file_size.append(get_FileSize(path))
