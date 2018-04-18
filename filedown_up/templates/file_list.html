@@ -3,28 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script type="text/javascript" src="static/page.js"></script>
+
+    <style type="text/css" >
+     tr
+     {
+	      width:500;
+     }
+    </style>
 </head>
-<body>
-<table border="1">
-<tr>
-    <td>文件名</td>
-    <td>文件大小</td>
-     <td>创建时间</td>
+<body onLoad="goPage(1,10);">
+<table id="idData"  border="1" align="center" headFixMode="true">
+<tr >
+    <td >文件名</td>
+    <td >文件大小</td>
+    <td >创建时间</td>
 </tr>
 
-<tr>
+<tr >
 {% for name in records %}
 
-    {% if loop.index%3 != 0 %}
-        <td>{{ name }} </td>
-    {% else %}
-        <td>{{ name }} </td>
-        <br>
-        </tr>
+    {% if loop.index%3 ==1 %}
+   	 <td><a href=http://123.56.4.48:8888/uploads/{{ name }} download={{ name }} >{{ name }}</a> </td>
+    {% elif loop.index%3 ==2 %}
+    	<td> {{ name }} MB </td>
+    {% else  %}
+    	<td> {{ name }} </td>
+    	</tr>
     {% endif %}
 {% endfor %}
 
-
   </table>
+      <table width="60%" align="right">
+	<tr><td><div id="barcon" name="barcon"></div></td>
+      </table>
 </body>
+
 </html>
