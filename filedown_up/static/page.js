@@ -6,7 +6,7 @@
  * 纯js分页实质是数据行全部加载，通过是否显示属性完成分页功能
  **/
 function goPage(pno,psize){
-    var itable = document.getElementById("idData");
+    var itable = document.getElementById("idData_tbody");
     var num = itable.rows.length;//表格所有行数(所有记录数)
     console.log(num);
     var totalPage = 0;//总页数
@@ -26,7 +26,7 @@ function goPage(pno,psize){
     for(var i=1;i<(num+1);i++){    
         var irow = itable.rows[i-1];
         if(i>=startRow && i<=endRow){
-            irow.style.display = "block";    
+            irow.style.display = "table-row";
         }else{
             irow.style.display = "none";
         }
