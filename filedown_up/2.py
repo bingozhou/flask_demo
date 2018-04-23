@@ -57,7 +57,6 @@ def file_list():
     file_name = os.listdir(r'E:\project\flask_demo\filedown_up\media')
     record = []
     for name in file_name:
-        print name
         name = name.encode('utf8', 'ignore')
         path = os.path.join("E:\project\\flask_demo\\filedown_up\\media",name)
         # print path
@@ -66,8 +65,8 @@ def file_list():
         record.append(name)
         record.append(get_FileSize(path))
         record.append(get_FileCreateTime(path))
-
-    return render_template('file_list.html',records=record)
+    host = request.host
+    return render_template('file_list.html',records=record,host=host)
 
 
 
