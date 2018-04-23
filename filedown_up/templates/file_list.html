@@ -6,25 +6,37 @@
     <script type="text/javascript" src="static/page.js"></script>
 
     <style type="text/css" >
-     tr
-     {
-	      width:500;
-     }
+        #idData {
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+            color: #666;
+        }
+        #idData th, #idData td {
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+        #barcon {
+            width: 60%;
+            margin: 30px auto;
+            text-align: center;
+        }
     </style>
 </head>
-<body onLoad="goPage(1,10);">
+<body onLoad="goPage(1,3);">
 <table id="idData"  border="1" align="center" headFixMode="true">
+<thead>
 <tr >
     <td >文件名</td>
     <td >文件大小</td>
     <td >创建时间</td>
 </tr>
-
+</thead>
+<tbody id="idData_tbody">
 <tr >
 {% for name in records %}
 
     {% if loop.index%3 ==1 %}
-   	 <td><a href=http://123.56.4.48:8888/uploads/{{ name }} download={{ name }} >{{ name }}</a> </td>
+   	 <td><a href=http://{{ host }}/uploads/{{ name }} download={{ name }} >{{ name }}</a> </td>
     {% elif loop.index%3 ==2 %}
     	<td> {{ name }} MB </td>
     {% else  %}
@@ -32,11 +44,12 @@
     	</tr>
     {% endif %}
 {% endfor %}
+</tbody>
 
   </table>
-      <table width="60%" align="right">
-	<tr><td><div id="barcon" name="barcon"></div></td>
-      </table>
+
+<div id="barcon" name="barcon"></div>
+
 </body>
 
 </html>
