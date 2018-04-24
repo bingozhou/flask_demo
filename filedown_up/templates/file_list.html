@@ -36,7 +36,7 @@
 {% for name in records %}
 
     {% if loop.index%3 ==1 %}
-   	 <td><a href=http://{{ host }}/uploads/{{ name }} download={{ name }} >{{ name }}</a> </td>
+   	 <td><a href="http://{{ host }}/uploads/{{ name }}" download="{{ name }}" >{{ name }}</a> </td>
     {% elif loop.index%3 ==2 %}
     	<td> {{ name }} MB </td>
     {% else  %}
