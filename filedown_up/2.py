@@ -1,22 +1,20 @@
 # -*- coding: utf-8 -*-
 import sys
+
 reload(sys)
 sys.setdefaultencoding('utf8')
 
 from flask import send_from_directory, \
-    Flask,url_for,request,render_template
+    Flask, url_for, request, render_template
 
 import os
 
 import time
 
-
-
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = os.getcwd() + '/media/'
 # 设置文件上传的路径 os.getcwd() 返回当前进程的工作目录
 # 项目原文件目录需要有一个media文件夹，用来存放上传文件，如不设置，则和源文件同一目录
-
 
 
 html = '''
@@ -43,7 +41,8 @@ def upload_file(filename):
     file_url = url_for('uploaded_file', filename=filename)
     print file_url
     print filename
-    return html+'<br><a href='+file_url+' '+'download='+filename+'>加链接处</a>'
+    return html + '<br><a href=' + file_url + ' ' + 'download=' + filename + '>加链接处</a>'
+
 
 # @app.route('/list')
 # def file_list():
@@ -58,7 +57,7 @@ def file_list():
     record = []
     for name in file_name:
         name = name.encode('utf8', 'ignore')
-        path = os.path.join("E:\project\\flask_demo\\filedown_up\\media",name)
+        path = os.path.join("E:\project\\flask_demo\\filedown_up\\media", name)
         # print path
         # file_size.append(get_FileSize(path))
         # file_creatime.append(get_FileCreateTime(path))
@@ -66,9 +65,23 @@ def file_list():
         record.append(get_FileSize(path))
         record.append(get_FileCreateTime(path))
     host = request.host
-    return render_template('file_list.html',records=record,host=host)
+    return render_template('search_result.html', records=record, host=host)
 
 
+@app.route('/search', methods=['POST','GET'])
+def search_list():
+    file_name = os.listdir(r'E:\project\flask_demo\filedown_up\media')
+    record = []
+    filestr = request.form['filestr']
+    for name in file_name:
+        name = name.encode('utf8', 'ignore')
+        path = os.path.join("E:\project\\flask_demo\\filedown_up\\media", name)
+        if filestr in name:
+            record.append(name)
+            record.append(get_FileSize(path))
+            record.append(get_FileCreateTime(path))
+    host = request.host
+    return render_template('search_result.html', records=record, host=host)
 
 
 def get_FileSize(filePath):
@@ -77,14 +90,16 @@ def get_FileSize(filePath):
     fsize = fsize / float(1024 * 1024)
     return round(fsize, 2)
 
+
 def get_FileCreateTime(filePath):
-    filePath = unicode(filePath,'utf8')
+    filePath = unicode(filePath, 'utf8')
     t = os.path.getctime(filePath)
     return TimeStampToTime(t)
 
+
 def TimeStampToTime(timestamp):
     timeStruct = time.localtime(timestamp)
-    return time.strftime('%Y-%m-%d %H:%M:%S',timeStruct)
+    return time.strftime('%Y-%m-%d %H:%M:%S', timeStruct)
 
 
 if __name__ == '__main__':
